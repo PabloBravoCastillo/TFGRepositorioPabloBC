@@ -22,7 +22,7 @@ public class DetalleOrden {
 	private Orden orden;
 	
 	@ManyToOne
-	private Producto producto;
+	private Clases clases;
 	
 	public DetalleOrden() {
 	
@@ -73,16 +73,19 @@ public class DetalleOrden {
 	public void setOrden(Orden orden) {
 		this.orden = orden;
 	}
-	public Producto getProducto() {
-		return producto;
+
+	public Clases getClases() {
+		return clases;
 	}
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setClases(Clases clases) {
+		this.clases = clases;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "DetalleOrden [id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio
-				+ ", total=" + total + "]";
+				+ ", total=" + total + ", orden=" + orden + ", clases=" + clases + "]";
 	}
 
 }

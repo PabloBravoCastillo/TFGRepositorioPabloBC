@@ -20,7 +20,7 @@ import com.curso.ecommerce.model.Usuario;
 public class UserDetailServiceImpl implements UserDetailsService{
 	
 	@Autowired
-	private IUsuarioService usuarioService;
+	private IEntrenadorService usuarioService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCrypt;

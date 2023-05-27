@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
@@ -20,14 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.curso.ecommerce.model.Clases;
 import com.curso.ecommerce.model.DetalleOrden;
 import com.curso.ecommerce.model.Orden;
-import com.curso.ecommerce.model.Producto;
 import com.curso.ecommerce.model.Usuario;
+import com.curso.ecommerce.service.ClasesService;
+import com.curso.ecommerce.service.EntrenadorService;
 import com.curso.ecommerce.service.IDetalleOrdenService;
 import com.curso.ecommerce.service.IOrdenService;
-import com.curso.ecommerce.service.IUsuarioService;
-import com.curso.ecommerce.service.ProductoService;
+import com.curso.ecommerce.service.IEntrenadorService;
 
 @Controller
 @RequestMapping("/")
@@ -36,10 +36,13 @@ public class HomeController {
 	private final Logger log = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	private ProductoService productoService;
+	private ClasesService clasesService;
 	
 	@Autowired
-	private IUsuarioService usuarioService;
+	private EntrenadorService entrenadorService;
+	
+	@Autowired
+	private IEntrenadorService usuarioService;
 	
 	
 	@Autowired
@@ -59,19 +62,36 @@ public class HomeController {
 		
 		log.info("Sesion del usuario: {}", session.getAttribute("idusuario"));
 		
-		model.addAttribute("productos", productoService.findAll());
+		model.addAttribute("entrenadores", entrenadorService.findAll());
+		
 		
 		//session
 		model.addAttribute("sesion", session.getAttribute("idusuario"));
 
 		return "usuario/home";
 	}
+	
+	@GetMapping("hacer")
+	public String hacerAdmin(Model model, HttpSession session) {
+		
+		log.info("Sesion del usuario: {}", session.getAttribute("idusuario"));
+		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		usuario.setTipo("ADMIN");
+		usuarioService.save(usuario);
+	
+		
+		
+		//session
+		model.addAttribute("sesion", session.getAttribute("idusuario"));
+
+		return "redirect:/carrito";
+	}
 
 	@GetMapping("productohome/{id}")
 	public String productoHome(@PathVariable Integer id, Model model) {
 		log.info("Id producto enviado como parámetro {}", id);
-		Producto producto = new Producto();
-		Optional<Producto> productoOptional = productoService.get(id);
+		Clases producto = new Clases();
+		Optional<Clases> productoOptional = clasesService.get(id);
 		producto = productoOptional.get();
 
 		model.addAttribute("producto", producto);
@@ -82,10 +102,10 @@ public class HomeController {
 	@PostMapping("/cart")
 	public String addCart(@RequestParam Integer id, Model model) {
 		DetalleOrden detalleOrden = new DetalleOrden();
-		Producto producto = new Producto();
+		Clases producto = new Clases();
 		double sumaTotal = 0;
 
-		Optional<Producto> optionalProducto = productoService.get(id);
+		Optional<Clases> optionalProducto = clasesService.get(id);
 		log.info("Producto añadido: {}", optionalProducto.get());
 		
 		producto = optionalProducto.get();
@@ -94,11 +114,11 @@ public class HomeController {
 		detalleOrden.setPrecio(producto.getPrecio());
 		detalleOrden.setNombre(producto.getNombre());
 		detalleOrden.setTotal(producto.getPrecio());
-		detalleOrden.setProducto(producto);
+		detalleOrden.setClases(producto);
 		
 		//validar que le producto no se añada 2 veces
 		Integer idProducto=producto.getId();
-		boolean ingresado=detalles.stream().anyMatch(p -> p.getProducto().getId()==idProducto);
+		boolean ingresado=detalles.stream().anyMatch(p -> p.getClases().getId()==idProducto);
 		
 		if (!ingresado) {
 			detalles.add(detalleOrden);
@@ -121,7 +141,7 @@ public class HomeController {
 		List<DetalleOrden> ordenesNueva = new ArrayList<DetalleOrden>();
 
 		for (DetalleOrden detalleOrden : detalles) {
-			if (detalleOrden.getProducto().getId() != id) {
+			if (detalleOrden.getClases().getId() != id) {
 				ordenesNueva.add(detalleOrden);
 			}
 		}
@@ -198,7 +218,7 @@ public class HomeController {
 	@PostMapping("/search")
 	public String searchProduct(@RequestParam String nombre, Model model) {
 		log.info("Nombre del producto: {}", nombre);
-		List<Producto> productos= productoService.findAll().stream().filter( p -> p.getNombre().contains(nombre)).collect(Collectors.toList());
+		List<Clases> productos= clasesService.findAll().stream().filter( p -> p.getNombre().contains(nombre)).collect(Collectors.toList());
 		model.addAttribute("productos", productos);		
 		return "usuario/home";
 	}

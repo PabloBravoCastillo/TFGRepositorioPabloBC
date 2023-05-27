@@ -22,11 +22,13 @@
 					<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> ADMIN </a>
+							aria-haspopup="true" aria-expanded="false"> Entrenador </a>
 							
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" th:href="@{/productos}">Clases</a> 
+								<a class="dropdown-item" th:href="@{/clases}">Clases</a>
+								<a class="dropdown-item" th:href="@{/administrador/perfil}">Editar Perfil</a>
+								<a class="dropdown-item" th:href="@{/administrador/entrenamientos}">Entrenamientos</a>
 								<a class="dropdown-item" th:href="@{/administrador/usuarios}">Usuarios</a>
 								<a class="dropdown-item" th:href="@{/administrador/ordenes}">Ordenes</a>
 								<a class="dropdown-item" th:href="@{/usuario/cerrar}">Salir</a>

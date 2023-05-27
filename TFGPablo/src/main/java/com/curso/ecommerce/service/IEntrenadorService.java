@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.curso.ecommerce.model.Usuario;
 
-public interface IUsuarioService {
+public interface IEntrenadorService {
 	List<Usuario> findAll();
 	Optional<Usuario> findById(Integer id);
 	Usuario save (Usuario usuario);
