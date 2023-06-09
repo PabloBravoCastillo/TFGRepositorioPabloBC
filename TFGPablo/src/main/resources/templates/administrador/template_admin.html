@@ -2,7 +2,7 @@
 <div th:fragment="header">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" th:href="@{/administrador}">Reserva Cita</a>
+			<a class="navbar-brand" th:href="@{/administrador}">FitPlanner</a>
 
 			<form class="form-inline my-2 my-lg-0" method="post" action="#">
 				<input class="form-control mr-sm-2" type="search"
@@ -19,6 +19,12 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
+<!-- 				<li class="nav-item"> -->
+<!-- 						<a class="nav-link" th:href="@{administrador/entrenadores}">Entrenadores</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="nav-item"> -->
+<!-- 						<a class="nav-link" th:href="@{administrador/actividades}">Actividades</a> -->
+<!-- 					</li> -->
 					<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -26,6 +32,7 @@
 							
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" th:href="@{/administrador}">Citas</a>
 								<a class="dropdown-item" th:href="@{/clases}">Clases</a>
 								<a class="dropdown-item" th:href="@{/administrador/perfil}">Editar Perfil</a>
 								<a class="dropdown-item" th:href="@{/administrador/entrenamientos}">Entrenamientos</a>
@@ -46,7 +53,7 @@
 <div th:fragment="footer">
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Reserva Cita</p>
+			<p class="m-0 text-center text-white">Copyright &copy; FitPlanner</p>
 		</div>
 		<!-- /.container -->
 	</footer>

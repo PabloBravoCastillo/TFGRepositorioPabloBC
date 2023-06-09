@@ -14,7 +14,7 @@
 
 
   <!-- Bootstrap core CSS -->
-  <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link th:href="@{css/heroic-features.css}" rel="stylesheet">
@@ -32,35 +32,37 @@
 
   <!-- Page Heading/Breadcrumbs -->
   <h1 class="mt-4 mb-3">
-    Reserva Cita <small>Productos</small>
+    Reserva Cita <small>Citas por confirmar</small>
   </h1>
 
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-    <li class="breadcrumb-item active">Ver Clases</li>
+    <li class="breadcrumb-item active">Citas por confirmar</li>
   </ol>
 
-  <a class="btn btn-primary" th:href="@{/clases/create}" > Crear Clases</a>
+  
   <h2>Clases</h2>
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Descripción</th>
-        
-        <th scope="col">Precio</th>
-        <th scope="col">Acción</th>
-        <th scope="col">Acción</th>
+        <th>Fecha</th>
+        <th>Nombre</th>
+        <th>Hora de inicio</th>
+        <th>Hora de fin</th>
+        <th>Precio</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr th:each="producto:${productos}">
-        <td th:text="${producto.nombre}"></td>
-        <td th:text="${producto.descripcion}"></td>
-        
-        <td th:text="${producto.precio}"></td>
-        <td><a  class="btn btn-warning" th:href="@{clases/edit/{id} (id=${producto.id}) }">Editar</a> </td>
-        <td><a  class="btn btn-danger" th:href="@{clases/delete/{id} (id=${producto.id}) }">Eliminar</a> </td>
+      <tr th:each="clase:${clasesporconfirmar}">
+        <td th:text="${clase.modalidad.date}"></td>
+        <td th:text="${clase.nombre}"></td>
+        <td th:text="${clase.horaInicio}"></td>
+        <td th:text="${clase.horaFin}"></td>
+        <td th:text="${clase.precio}"></td>
+        <td>
+          <a th:href="@{clases/confirmar/{id} (id=${clase.id}) }" class="btn btn-primary">Confirmar</a>
+        </td>
       </tr>       
     </tbody>
   </table>

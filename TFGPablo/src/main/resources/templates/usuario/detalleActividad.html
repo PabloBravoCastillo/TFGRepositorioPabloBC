@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Reserva Cita</title>
+  <link rel="icon" href="/images/logoappReserva.jpg" type="image/png">
+  <link rel="shortcut icon" href="/images/logoappReserva.jpg" type="image/png">
+
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <div th:include="usuario/template_usuario.html::header" th:if="${sesion==null}"></div>
+
+  <div th:include="usuario/template_usuario.html::header-user" th:unless="${sesion==null}"></div>
+
+  <!-- Page Content -->
+  <div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Reserva Cita <small>Compras</small></h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+      <li class="breadcrumb-item active">Compras</li>
+    </ol>
+
+    <!-- Blog Post -->
+    <div class="row">
+      <div class="col-md-6">
+       <h2>Fecha: <span th:text="${modalidad.date}"></span></h2>
+       <h2><span th:text="${modalidad.nombre}"></span></h2>
+        <img th:src="@{/images/{img} (img=${modalidad.imagen})}" alt="Imagen de la Clase" class="img-fluid mt-4">
+        <h2><span th:text="${modalidad.descripcion}"></span></h2>
+      </div>
+      <div class="col-md-6">
+       
+        
+        
+        <h2>Precio: <span th:text="${modalidad.precio}"></span></h2>
+        <h2>Ubicación: <span th:text="${modalidad.ubicacion}"></span></h2>
+        <h2>Modalidad: <span th:text="${modalidad.modalidad}"></span></h2>
+        <h2>Duración: <span th:text="${modalidad.duracion}"></span></h2>
+
+        <div class="mt-4">
+          <h2>Horarios Disponibles:</h2>
+          <ul class="list-unstyled">
+            <li th:each="clase : ${clases}">
+              <form th:action="@{/cart}" method="POST">
+                <input type="hidden" th:value="${clase.id}" name="id">
+                <div class="card mb-2">
+    <button type="submit" class="btn" th:class="${clase.disponible} ? 'btn-danger' :'btn-success'" th:disabled="${clase.disponible}">
+        <span th:text="${clase.horaFin}"></span>
+    </button>
+</div>
+
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <div th:include="usuario/template_usuario.html::footer"></div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

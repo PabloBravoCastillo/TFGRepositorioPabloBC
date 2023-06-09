@@ -14,7 +14,7 @@
 
 
   <!-- Bootstrap core CSS -->
-<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+<link th:href="@{/vendor/bootstrap/css/bootstrap.css}"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
@@ -25,13 +25,13 @@
 <body>
 
   <!-- Navigation -->
- <div th:include="usuario/template_usuario.html::header"></div>
+ <div th:include="usuario/template_usuario.html::header-user"></div>
 
     <!-- Page Content -->
     <div class="container">
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Reserva Cita <small>Resumen de la orden</small>
+        Reserva Cita <small>Resumen de las citas</small>
       </h1>
 
       <ol class="breadcrumb">
@@ -60,16 +60,18 @@
                   <thead>
                     <tr>
                       <th scope="col">Clase</th>
+                      <th scope="col">HoraInicio</th>
+					<th scope="col">HoraFin</th>
+                      
                       <th scope="col">Precio</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col">Total</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr th:each="dtorden:${cart}">
                      <td th:text="${dtorden.nombre}"></td>
-                     <td th:text="${dtorden.precio}"></td>
-                     <td th:text="${dtorden.cantidad}"></td>
+                     <td th:text="${dtorden.clases.horaInicio}"></td>
+					<td th:text="${dtorden.clases.horaFin}"></td>
+                     
                      <td th:text="${dtorden.total}"></td>
 
                    </tr>
@@ -82,11 +84,11 @@
 
 
          <div class="col-lg-3">
-          <h2 class="card-title">Resumen Orden</h2>
+          <h2 class="card-title">Resumen Citas</h2>
 
           <ul class="list-group">
             <li class="list-group-item"><h5 th:text=" 'Total: '+ ${orden.total} "> </h5></li>
-            <a th:href="@{saveOrder}" class="btn btn-dark">Generar</a>
+            <a th:href="@{saveOrder}" class="btn btn-dark">Confirmar Reserva</a>
           </ul>
         </div>
       </div>

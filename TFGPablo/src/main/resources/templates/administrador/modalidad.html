@@ -14,7 +14,7 @@
 
 
   <!-- Bootstrap core CSS -->
-<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+<link th:href="@{/vendor/bootstrap/css/bootstrap.css}"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
@@ -35,10 +35,12 @@
     <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
     <li class="breadcrumb-item active">Entrenamientos</li>
   </ol>
-  
-  <div class="row">
-    <div class="col-md-4 mb-3" th:each="modalidad: ${modalidades}">
+   <a class="btn btn-primary" th:href="@{/administrador/formularioDisponibilidad}" > Dar Disponibilidad</a>
     <h2 class="mt-2 mb-3">Vista Previa</h2>
+  <div class="row">
+  
+    <div class="col-md-4 mb-3" th:each="modalidad: ${modalidades}">
+     
       <div class="card">
         <img class="card-img-top" th:src="@{/images/{img} (img=${modalidad.imagen})} " alt="Foto de Deporte">
         <div class="card-body">
@@ -50,37 +52,9 @@
         </div>
       </div>
     </div>
-    
-<!--     <div class="col-md-8"> -->
-<!--       <div class="shadow p-3 mb-5 bg-white rounded"> -->
-<!--         <h2>Formulario</h2> -->
-<!--         <form class="form-horizontal" th:action="@{/administrador/actualizarPerfil}" method="post"  enctype="multipart/form-data"> -->
-<!--         <input type="hidden" name="id" th:value="${entrenadorsele.id}"> -->
-<!--           <div class="form-group"> -->
-<!--             <div class="form-group"> -->
-<!--             <label for="nombre">Nombre:</label> -->
-<!--             <input type="text" class="form-control" id="nombre" name="nombre" th:value="${entrenadorsele.nombre}"> -->
-<!--           </div> -->
-<!--             <label for="descripcion">Descripción:</label> -->
-<!-- <input type="text" class="form-control" id="descripcion" name="descripcion" th:value="${entrenadorsele.descripcion}"  /> -->
-
-<!--           </div> -->
-<!--           <div class="form-group"> -->
-<!--             <label for="imagen">Imagen:</label> -->
-<!--             <input type="file" class="form-control-file" id="img" name="img"> -->
-<!--           </div> -->
-<!--           <div class="form-group"> -->
-<!--             <label for="ubicacion">Ubicación:</label> -->
-<!--             <input type="text" class="form-control" id="ubicacion" name="ubicacion" th:value="${entrenadorsele.ubicacion}"> -->
-<!--           </div> -->
-<!--           <button type="submit" class="btn btn-primary">Enviar</button> -->
-<!--         </form> -->
-<!--       </div> -->
-<!--     </div> -->
-  </div>
 </div>
-
-<!-- /.container -->
+</div>
+<!-- /.container
 
 <!-- Footer -->
 <div th:include="administrador/template_admin.html::footer"></div>

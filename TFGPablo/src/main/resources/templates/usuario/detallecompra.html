@@ -14,7 +14,7 @@
 
 
   <!-- Bootstrap core CSS -->
-<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+<link th:href="@{/vendor/bootstrap/css/bootstrap.css}"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
@@ -54,17 +54,17 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Producto</th>                  
-                  <th scope="col">Precio</th>
+                  <th scope="col">Clase</th>
+                  <th scope="col">HoraInicio</th>
+					<th scope="col">HoraFin</th>
                   <th scope="col">Total</th>                  
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="detalle:${detalles}">
-                  <td  th:text="${detalle.cantidad}"></td>
-                  <td th:text="${detalle.nombre}"></td>
-                  <td th:text="${detalle.precio}"></td>
+                  <td  th:text="${detalle.nombre}"></td>
+                  <td th:text="${detalle.clases.horaInicio}"></td>
+                  <td th:text="${detalle.clases.horaFin}"></td>
                   <td th:text="${detalle.total}"></td>
                 </tr>
               </tbody>

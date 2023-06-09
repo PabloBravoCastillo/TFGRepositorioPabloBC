@@ -38,20 +38,21 @@ DROP TABLE IF EXISTS `clases`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clases` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `confirmado` bit(1) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
+  `horaFin` time DEFAULT NULL,
+  `horaInicio` time DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `precio` double NOT NULL,
-  `reservado` bit(1) DEFAULT b'0',
-  `confirmado` bit(1) DEFAULT b'0',
-  `categoria_id_categoria` int NOT NULL,
-  `modalidad_id` int DEFAULT NULL,
+  `reservado` bit(1) NOT NULL,
   `entrenador_id` int DEFAULT NULL,
+  `modalidad_id` int DEFAULT NULL,
+  `disponible` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK9ct54pjyb947mdm880wli7i61` (`categoria_id_categoria`),
   KEY `FKgugfa7jgbr7qr4ev0k4bg0fe7` (`entrenador_id`),
   KEY `FKitmn1x7p0g8ht59wkfy58x7cj` (`modalidad_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +73,7 @@ CREATE TABLE `detalles` (
   PRIMARY KEY (`id`),
   KEY `FK7l97xmjodsr83if0dasm8a2cx` (`clases_id`),
   KEY `FKdurdo71oa161lmmal7oeaor74` (`orden_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,9 +90,12 @@ CREATE TABLE `entrenador` (
   `nombre` varchar(255) DEFAULT NULL,
   `usuario_id` int DEFAULT NULL,
   `ubicacion` varchar(255) DEFAULT NULL,
+  `desactivado` bit(1) NOT NULL,
+  `especialidad` varchar(255) DEFAULT NULL,
+  `modalidad` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKh8p6a3qcrxs1sjti88ghssehs` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +108,6 @@ DROP TABLE IF EXISTS `modalidad`;
 CREATE TABLE `modalidad` (
   `id` int NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `disponibilidad` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `categoria_id_categoria` int DEFAULT NULL,
   `entrenador_id` int DEFAULT NULL,
@@ -113,10 +116,14 @@ CREATE TABLE `modalidad` (
   `ubicacion` varchar(255) DEFAULT NULL,
   `duracion` int DEFAULT NULL,
   `intervaloentreclases` int DEFAULT NULL,
+  `horaFin` time DEFAULT NULL,
+  `horaInicio` time DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `precio` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKj0kxujs2hcd2p1vrc5p4b024s` (`categoria_id_categoria`),
   KEY `FKpuwvbxbc7apilu53mcasjprs8` (`entrenador_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +142,7 @@ CREATE TABLE `ordenes` (
   `usuario_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsqu43gsd6mtx7b1siww96324` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +162,7 @@ CREATE TABLE `usuarios` (
   `tipo` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -167,4 +174,4 @@ CREATE TABLE `usuarios` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-26 17:08:41
+-- Dump completed on 2023-06-01 19:33:45

@@ -9,13 +9,13 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Reserva Cita</title>
+<title>FitPlanner</title>
   <link rel="icon" href="/images/logoappReserva.jpg" type="image/png">
   <link rel="shortcut icon" href="/images/logoappReserva.jpg" type="image/png">
 
 
 <!-- Bootstrap core CSS -->
-<link th:href="@{vendor/bootstrap/css/bootstrap.min.css}"
+<link th:href="@{vendor/bootstrap/css/bootstrap.css}"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
@@ -29,11 +29,11 @@
 	<div th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="/">Reserva Cita</a>
+    <a class="navbar-brand" href="/">FITPLANNER</a>
 
     <form class="form-inline my-2 my-lg-0" action="/search" method="post">
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="nombre" autocomplete="off">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+      <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="/getCart">Carrito</a></li>
+       
         <li class="nav-item"><a class="nav-link" href="/usuario/login">Login</a></li>
       </ul>
     </div>
@@ -57,15 +57,7 @@
 <div th:fragment="header-user">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" th:href="@{/}">Reserva Cita</a>
-
-			<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Buscar" aria-label="Search" name="nombre"
-					autocomplete="off">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-			</form>
-
+			<a class="navbar-brand" th:href="@{/}">FitPlanner</a>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -74,31 +66,31 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> USUARIO </a>
-							
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" th:href="@{/usuario/compras}">Compras</a>
-								<a class="dropdown-item" th:href="@{/usuario/perfil}">Perfil</a>
-								<a class="dropdown-item" th:href="@{/getCart}">Carrito</a> 
-								<a class="dropdown-item" th:href="@{/usuario/cerrar}">Salir</a> 
-							</div></li>
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> USUARIO </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" th:href="@{/usuario/compras}">Reservas</a>
+							<a class="dropdown-item" th:href="@{/usuario/perfil}">Perfil</a>
+							<a class="dropdown-item" th:href="@{/getCart}">Citas Seleccionadas</a> 
+							<a class="dropdown-item" th:href="@{/usuario/cerrar}">Salir</a> 
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 </div>
 
 
+
 	<!-- Footer -->
-	<div th:fragment="footer">
+	<div th:fragment="footer" class="footer">
 		<footer class="py-5 bg-dark">
 			<div class="container">
-				<p class="m-0 text-center text-white">Copyright &copy; Reserva Cita</p>
+				<p class="m-0 text-center text-white">Copyright &copy; FITPLANNER</p>
 			</div>
 			<!-- /.container -->
 		</footer>

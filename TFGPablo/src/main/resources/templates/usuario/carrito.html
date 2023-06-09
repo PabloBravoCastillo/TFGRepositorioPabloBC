@@ -15,7 +15,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+<link th:href="@{/vendor/bootstrap/css/bootstrap.css}"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
@@ -35,7 +35,7 @@
 	<div class="container">
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			Reserva Cita <small>Carrito</small>
+			Reserva Cita <small>Citas seleccionadas</small>
 		</h1>
 
 		<ol class="breadcrumb">
@@ -52,19 +52,22 @@
 							<thead>
 								<tr>
 									<th scope="col">Clase</th>
+									<th scope="col">HoraInicio</th>
+									<th scope="col">HoraFin</th>
 									<th scope="col">Precio</th>
 									
-									<th scope="col">Total</th>
+									
 									<th scope="col">Acción</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="dorden:${cart}">
 									<td th:text="${dorden.nombre}"></td>
-									<td th:text="${dorden.precio}"></td>
+									<td th:text="${dorden.clases.horaInicio}"></td>
+									<td th:text="${dorden.clases.horaFin}"></td>
 									
 									<td th:text="${dorden.total}"></td>
-									<td><a th:href="@{/delete/cart/{id}   (id=${dorden.producto.id}) }" class="btn btn-danger">Quitar</a></td>
+									<td><a th:href="@{/delete/cart/{id}   (id=${dorden.clases.id}) }" class="btn btn-danger">Quitar</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -75,7 +78,7 @@
 
 						<ul class="list-group">
 							<li class="list-group-item"><h5 th:text="${orden.total}"></h5></li>
-							<a th:href="@{/order}" class="btn btn-dark">Ver Orden</a>
+							<a th:href="@{/order}" class="btn btn-dark">Ver Detalles</a>
 						</ul>
 					</div>
 

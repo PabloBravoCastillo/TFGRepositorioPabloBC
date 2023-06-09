@@ -14,7 +14,7 @@
   <link rel="shortcut icon" href="/images/logoappReserva.jpg" type="image/png">
 
 <!-- Bootstrap core CSS -->
-<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+<link th:href="@{/vendor/bootstrap/css/bootstrap.css}"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
@@ -25,7 +25,8 @@
 <body>
 
 	<!-- Navigation -->
-	<div th:include="usuario/template_usuario.html::header" th:if="${sesion==null}">	
+
+ <div th:include="usuario/template_usuario.html::header" th:if="${sesion==null}">	
 	</div>
 	
 	<div th:include="usuario/template_usuario.html::header-user" th:unless="${sesion==null}"> </div>
@@ -43,7 +44,7 @@
   <div class="col-md-8">
     <div class="shadow p-3 mb-5 bg-white rounded">
       <h2>Editar Perfil</h2>
-      <form class="form-horizontal" th:action="@{/administrador/actualizarPerfil}" method="post" enctype="multipart/form-data">
+      <form class="form-horizontal" th:action="@{/usuario/actualizarPerfil}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" th:value="${usuario.id}">
         <div class="form-group">
           <label for="nombre">Nombre:</label>
@@ -77,6 +78,7 @@
 </div>
 
 </div>
+
 	<!-- /.container -->
 
 	<!-- Footer -->
@@ -84,8 +86,8 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript -->
-	<script th:src="@{vendor/jquery/jquery.min.js}"></script>
-	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
 </body>
 

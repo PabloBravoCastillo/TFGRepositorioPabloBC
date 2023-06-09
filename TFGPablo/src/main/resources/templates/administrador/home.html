@@ -14,7 +14,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link th:href="@{vendor/bootstrap/css/bootstrap.min.css}"
+<link th:href="@{/vendor/bootstrap/css/bootstrap.css}"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
@@ -29,38 +29,33 @@
 
 	<!-- Page Content -->
 	<div class="container">
-
-		<!-- Jumbotron Header -->
-		<div class="container">
-  <div class="jumbotron text-center">
-    
-    <h1 class="display-4">Reserva tu cita con un entrenador personal</h1>
-    <p class="lead">Encuentra el entrenador perfecto y alcanza tus metas fitness</p>
-    <a href="/usuario/login" class="btn btn-primary btn-lg">¡Regístrate ahora!</a>
-  </div>
+  <h2>Reservas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Nombre</th>
+        <th>Hora de inicio</th>
+        <th>Hora de fin</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="clase : ${clases}">
+        <td th:text="${clase.modalidad.date}"></td>
+        <td th:text="${clase.nombre}"></td>
+        <td th:text="${clase.horaInicio}"></td>
+        <td th:text="${clase.horaFin}"></td>
+        <td th:text="${clase.precio}"></td>
+        <td>
+          <a href="#" class="btn btn-primary">Ver detalles</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-		<!-- Page Features -->
-		<div class="row text-center">
 
-			<div class="col-lg-3 col-md-6 mb-4" th:each="producto: ${productos}">
-				<div class="card h-100">
-					<img class="card-img-top"
-						th:src="@{/images/{img} (img=${producto.imagen})} " alt="">
-					<div class="card-body">
-						<p class="card-text" th:text="${producto.nombre}"></p>
-					</div>
-					<div class="card-footer">
-						<a href="productohome.html" class="btn btn-success">Ver
-							Clases</a>
-					</div>
-				</div>
-			</div>
-
-
-		</div>
-		<!-- /.row -->
-
-	</div>
 	<!-- /.container -->
 
 	<div th:include="administrador/template_admin.html::footer"></div>
