@@ -70,7 +70,7 @@ public class EntrenadorServiceImpl implements EntrenadorService {
 		entrenadorRepository.save(entrenador);
 	}
 	
-	
+
 
 	@Override
 	public void delete(Integer id) {

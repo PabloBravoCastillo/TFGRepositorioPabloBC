@@ -38,37 +38,60 @@
 		<div class="container mt-4">
 		<ol class="breadcrumb ">
 		    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-		    <li class="breadcrumb-item active">Actividades</li>
+		    <li class="breadcrumb-item active">Selección Entrenador</li>
 		</ol>
   </div>
   
 
 
 		<!-- Page Features -->
-<div class="row">
-<div class="col-md-3">
-      <div class="card mb-4">
-        <img class="card-img-top" th:src="@{/images/{img} (img=${actividad.imagen})}" alt="Foto de entrenador">
-        <div class="card-body">
-          <h5 class="card-title" th:text="${actividad.nombre}"></h5>
-        
+<!-- Page Heading/Breadcrumbs -->
+
+<div class="container">
+    <h1 class="mt-4 mb-3">
+         <span th:text="'Categoría: '+${actividad.nombre}"></span>
+    </h1>
+    
+    <h4>Selecciona un entrenador:</h4>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mt-4" th:each="entrenador: ${entrenadores}">
+            <div class="card mb-4 h-100">
+                <img th:src="@{/images/{img} (img=${entrenador.imagen})}" class="card-img-top w-100" alt="Imagen del Entrenador">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${entrenador.nombre}"></h5>
+                    <p class="card-text" th:text="${entrenador.descripcion}"></p>
+                    <a class="btn btn-primary" th:href="@{/entrenador/{idEntrenador}/{idCategoria}(idEntrenador=${entrenador.id}, idCategoria=${actividad.id_categoria})}">
+                        Ver Disponibilidad
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  <div class="col-md-4" th:each="entrenador: ${entrenadores}">
-    <div class="card mb-4">
-      <img th:src="@{/images/{img} (img=${entrenador.imagen})}" class="card-img-top w-100" alt="Imagen de la Clase B">
-      <div class="card-body">
-        <h5 class="card-title" th:text="${entrenador.nombre}"></h5>
-        
-        <p class="card-text" th:text="${entrenador.descripcion}"></p>
-        
-        <a class="btn btn-primary" th:href="@{/entrenador/{idEntrenador}/{idCategoria}(idEntrenador=${entrenador.id}, idCategoria=${actividad.id_categoria})}">
-          Ver Disponibilidad
-        </a>
-      </div>
+</div>
+
+
+
+
+<div class="mt-5">
+<h1>Otras Modalidades:</h1>
+</div>
+<div class="row">
+    <div class="col-md-3" th:each="otrasAct: ${otrasActividades}">
+        <div class="card mb-4">
+            <img class="card-img-top" th:src="@{/images/{img} (img=${otrasAct.imagen})}" alt="Foto de entrenador">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${otrasAct.nombre}"></h5>
+                <a class="btn btn-primary" th:href="@{/activiad/{idAct}(idAct=${otrasAct.id_categoria})}">
+                    Ver Entrenadores
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -82,8 +105,8 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript -->
-	<script th:src="@{vendor/jquery/jquery.min.js}"></script>
-	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
 </body>
 

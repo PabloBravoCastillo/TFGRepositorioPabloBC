@@ -16,5 +16,6 @@ public interface CategoriaService {
 	public List<Categoria> listar();
 	public Categoria findbyIdCategoria(int categoria_id);
 	public  Categoria obtenerNombreCategoria(int categoria_id);
+	public List  <Categoria> otrasCategorias(int categoria_id);
 	
 }

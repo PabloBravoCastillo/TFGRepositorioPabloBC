@@ -25,8 +25,9 @@ DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE `categoria` (
   `id_categoria` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +53,7 @@ CREATE TABLE `clases` (
   PRIMARY KEY (`id`),
   KEY `FKgugfa7jgbr7qr4ev0k4bg0fe7` (`entrenador_id`),
   KEY `FKitmn1x7p0g8ht59wkfy58x7cj` (`modalidad_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +74,7 @@ CREATE TABLE `detalles` (
   PRIMARY KEY (`id`),
   KEY `FK7l97xmjodsr83if0dasm8a2cx` (`clases_id`),
   KEY `FKdurdo71oa161lmmal7oeaor74` (`orden_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +96,7 @@ CREATE TABLE `entrenador` (
   `modalidad` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKh8p6a3qcrxs1sjti88ghssehs` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +124,7 @@ CREATE TABLE `modalidad` (
   PRIMARY KEY (`id`),
   KEY `FKj0kxujs2hcd2p1vrc5p4b024s` (`categoria_id_categoria`),
   KEY `FKpuwvbxbc7apilu53mcasjprs8` (`entrenador_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +143,7 @@ CREATE TABLE `ordenes` (
   `usuario_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsqu43gsd6mtx7b1siww96324` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +163,7 @@ CREATE TABLE `usuarios` (
   `tipo` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -174,4 +175,4 @@ CREATE TABLE `usuarios` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-01 19:33:45
+-- Dump completed on 2023-06-12  7:26:40

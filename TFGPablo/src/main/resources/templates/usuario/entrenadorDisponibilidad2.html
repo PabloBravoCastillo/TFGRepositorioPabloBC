@@ -32,8 +32,8 @@
   <!-- Page Heading/Breadcrumbs -->
   <ol class="breadcrumb mt-4">
     <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-    <li class="breadcrumb-item"><a th:href="@{/entrenadores}">Entrenadores</a></li>
-    <li class="breadcrumb-item active">Actividades</li>
+   
+    <li class="breadcrumb-item active">Disponibilidad</li>
   </ol>
 
   <div class="container">
@@ -64,23 +64,42 @@
           </div>
         </div>
         <div class="col-md-6">
-        <h4 th:text="${fecha}"></h4>
-          <h4>Hora:</h4>
-          <div th:each="clase: ${clases}">
-            <div class="card mb-2">
-              <form th:action="@{/cart}" method="POST">
-                <input type="hidden" th:value="${clase.id}" name="id">
-                <button type="submit" class="btn btn-block"
-                  th:class="${clase.disponible} ? 'btn-danger' : 'btn-success'" th:disabled="${clase.disponible}">
-                  <span th:text="${clase.horaInicio}"></span>
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+  <h4 th:text="${fecha}"></h4>
+  <h4>Hora:</h4>
+  <div th:each="clase: ${clases}">
+    <div class=" mb-2">
+      <form th:action="@{/cart}" method="POST">
+        <input type="hidden" th:value="${clase.id}" name="id">
+        <button type="submit" class="btn btn-block"
+          th:class="${clase.disponible} ? 'btn-danger' : 'btn-success'" th:disabled="${clase.disponible}">
+          <span th:text="${#strings.substring(clase.horaInicio, 0, 5)}"></span>
+          <span> - </span>
+          <span th:text="${#strings.substring(clase.horaFin, 0, 5)}"></span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
   </div>
+</div>
+<div class="mt-5">
+<h1>Otras Modalidades:</h1>
+</div>
+<div class="row">
+    <div class="col-md-3" th:each="otrasAct: ${otrasActividades}">
+        <div class="card mb-4">
+            <img class="card-img-top" th:src="@{/images/{img} (img=${otrasAct.imagen})}" alt="Foto de entrenador">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${otrasAct.nombre}"></h5>
+                <a class="btn btn-primary" th:href="@{/activiad/{idAct}(idAct=${otrasAct.id_categoria})}">
+                    Ver Entrenadores
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 

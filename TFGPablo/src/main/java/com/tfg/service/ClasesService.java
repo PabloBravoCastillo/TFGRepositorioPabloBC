@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.repository.query.Param;
+
 import com.tfg.model.Clases;
 
 public interface ClasesService {
@@ -17,5 +19,7 @@ public interface ClasesService {
 	public List<Clases> buscarClasesDeEntrenadorDesactivadas(int entrenador_id);
 	public List<Clases> findbyIdModalidad(int modalidad_id);
 	public List<Clases> mostrarHorasClasesdeunEntrenador(int idCategoria, int idEntrenador, Date fecha);
+	public List<Clases> mostarClasesReservadasUsuario(int idusuario);
+	public List<Clases> mostarClasesPorConfirmarUsuario(@Param("idusuario")int idusuario);
 
 }

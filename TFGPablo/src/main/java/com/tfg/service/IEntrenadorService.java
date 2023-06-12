@@ -14,5 +14,6 @@ public interface IEntrenadorService {
 	Usuario save (Usuario usuario);
 	Optional<Usuario> findByEmail(String email);
 	List <Entrenador> findbyIdCategoria (@Param("id_categoria") int idCategoria);
+	List<Usuario> obtenerUsuariosQueCompraronClaseDeEntrenador( int idEntrenador);
 
 }

@@ -23,6 +23,7 @@ import com.tfg.model.Clases;
 import com.tfg.model.Entrenador;
 import com.tfg.model.Orden;
 import com.tfg.model.Usuario;
+import com.tfg.service.ClasesService;
 import com.tfg.service.EntrenadorService;
 import com.tfg.service.IEntrenadorService;
 import com.tfg.service.IOrdenService;
@@ -33,6 +34,8 @@ import com.tfg.service.UploadFileService;
 public class UsuarioController {
 	
 	private final Logger logger= LoggerFactory.getLogger(UsuarioController.class);
+	@Autowired
+	private ClasesService clasesService;
 	
 	@Autowired
 	private IEntrenadorService usuarioService;
@@ -62,6 +65,30 @@ public class UsuarioController {
 		usuario.setPassword( passEncode.encode(usuario.getPassword()));
 		usuarioService.save(usuario);		
 		return "redirect:/";
+	}
+	
+	@GetMapping("/citasProx")
+	public String citasProx(Model model, HttpSession session) {
+		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		int idUsu=usuario.getId();
+		System.out.println(idUsu);
+		model.addAttribute("citasProx", clasesService.mostarClasesReservadasUsuario(idUsu));
+		
+		return "usuario/citasProx";
+
+	}
+	
+	@GetMapping("/citasPen")
+	public String citasPen(Model model, HttpSession session) {
+		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		int idUsu=usuario.getId();
+		System.out.println(idUsu);
+		model.addAttribute("citasProx", clasesService.mostarClasesPorConfirmarUsuario(idUsu));
+		
+		return "usuario/citasPen";
+
 	}
 	
 	@GetMapping("/login")
@@ -138,10 +165,14 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/crearPerfilEntrenador")
-	public String crearPerfilEntrenador(Entrenador entrenador, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
-			Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+	public String crearPerfilEntrenador(Model model, Entrenador entrenador, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
+		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		
+			
 			Usuario e= new Usuario();
 			int idUsuario=usuario.getId();
+			model.addAttribute("usuario", usuarioService.findById(idUsuario));
 			entrenador.setUsuario(usuario);
 			if (file.isEmpty()) { // editamos el producto pero no cambiamos la imagem
 				

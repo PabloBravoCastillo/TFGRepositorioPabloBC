@@ -36,6 +36,8 @@ import com.tfg.service.IOrdenService;
 import com.tfg.service.ModalidadService;
 import com.tfg.service.UploadFileService;
 
+
+
 @Controller
 @RequestMapping("/administrador")
 public class AdministradorController {
@@ -48,6 +50,8 @@ public class AdministradorController {
 	
 	@Autowired
 	private IEntrenadorService usuarioService;
+	
+	
 	
 	@Autowired
 	private CategoriaService categoriaService;
@@ -114,7 +118,7 @@ public class AdministradorController {
 		
 		
 		categoriaService.save(categoria);
-		return "redirect:/administrador/formularioDisponibilidad";
+		return "redirect:/administrador/entrenamientos";
 	}
 	
 	@GetMapping("/actividades")
@@ -152,21 +156,10 @@ model.addAttribute("entrenadores", entrenadorService.findAll());
 		
 	}
 	
+	
+	
+	
 	@GetMapping("/entrenamientos")
-	public String entrenamientos(Model model, HttpSession session) {
-		
-		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
-		int idUsuario = usuario.getId();
-		Entrenador entrenador = entrenadorService.findByIdUsuario(usuario.getId());
-		int idEntrenador = entrenador.getId();
-		 
-		model.addAttribute("modalidades", modalidadService.mostrarModalidadesPESTENTRE(idEntrenador));
-		return "administrador/modalidad";
-		
-	}
-	
-	
-	@GetMapping("/formularioDisponibilidad")
 	public String formularioDisponibilidad(Model model, HttpSession session) {
 		
 		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
@@ -244,7 +237,7 @@ model.addAttribute("entrenadores", entrenadorService.findAll());
             clases.setNombre(categoria.getNombre());
             clases.setDescripcion(modalidad.getDescripcion());
             clases.setImagen(modalidad.getImagen());
-            clases.setPrecio(modalidad.getPrecio());
+            clases.setPrecio(0);
             clases.setModalidad(modalidad);
             clases.setEntrenador(entrenador);
 
@@ -304,8 +297,10 @@ model.addAttribute("entrenadores", entrenadorService.findAll());
 
 	
 	@GetMapping("/usuarios")
-	public String usuarios(Model model) {
-		model.addAttribute("usuarios", usuarioService.findAll());
+	public String usuarios(Model model, HttpSession session) {
+		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		int idUsuario = usuario.getId();
+		model.addAttribute("usuarios", usuarioService.obtenerUsuariosQueCompraronClaseDeEntrenador(idUsuario));
 		return "administrador/usuarios";
 	}
 	

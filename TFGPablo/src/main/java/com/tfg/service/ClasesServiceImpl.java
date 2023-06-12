@@ -66,4 +66,13 @@ public class ClasesServiceImpl implements ClasesService{
 	public List<Clases> mostrarHorasClasesdeunEntrenador(@Param("idCategoria")int idCategoria,@Param("idEntrenador") int idEntrenador,@Param("fecha") Date fecha){
 		return clasesRepository.mostrarHorasClasesdeunEntrenador(idCategoria,idEntrenador,fecha);
 	}
+	
+	@Override
+	public List<Clases> mostarClasesReservadasUsuario(@Param("idusuario")int idusuario){
+		return clasesRepository.mostarClasesReservadasUsuario(idusuario);
+	}
+	
+	public List<Clases> mostarClasesPorConfirmarUsuario(@Param("idusuario")int idusuario){
+		return clasesRepository.mostarClasesPorConfirmarUsuario(idusuario);
+	}
 }

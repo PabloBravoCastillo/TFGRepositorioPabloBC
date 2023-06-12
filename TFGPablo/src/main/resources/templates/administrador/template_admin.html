@@ -2,7 +2,7 @@
 <div th:fragment="header">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" th:href="@{/administrador}">FitPlanner</a>
+			<a class="navbar-brand" th:href="@{/administrador}">FITPLANNER</a>
 
 			<form class="form-inline my-2 my-lg-0" method="post" action="#">
 				<input class="form-control mr-sm-2" type="search"
@@ -32,12 +32,12 @@
 							
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" th:href="@{/administrador}">Citas</a>
-								<a class="dropdown-item" th:href="@{/clases}">Clases</a>
+								<a class="dropdown-item" th:href="@{/administrador}">Clases Confirmadas</a>
+								<a class="dropdown-item" th:href="@{/clases}">Citas por confirmar</a>
 								<a class="dropdown-item" th:href="@{/administrador/perfil}">Editar Perfil</a>
-								<a class="dropdown-item" th:href="@{/administrador/entrenamientos}">Entrenamientos</a>
-								<a class="dropdown-item" th:href="@{/administrador/usuarios}">Usuarios</a>
-								<a class="dropdown-item" th:href="@{/administrador/ordenes}">Ordenes</a>
+								<a class="dropdown-item" th:href="@{/administrador/entrenamientos}">Disponibilidad</a>
+								<a class="dropdown-item" th:href="@{/administrador/usuarios}">Clientes</a>
+								
 								<a class="dropdown-item" th:href="@{/usuario/cerrar}">Salir</a>
 							</div></li>
 				</ul>

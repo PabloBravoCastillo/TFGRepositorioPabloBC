@@ -53,5 +53,9 @@ public class CategoriaServiceImpl implements CategoriaService {
 		return categoriaRepository.findbyIdCategoria( categoria_id);
 	}
 	
+	public List  <Categoria> otrasCategorias(int categoria_id){
+		return categoriaRepository.otrasCategorias(categoria_id);
+	}
+	
 	
 }

@@ -17,4 +17,8 @@ public interface ICategoriaRepository extends JpaRepository<Categoria, Integer> 
 	public  Categoria findbyIdCategoria(int categoria_id);
 	
 	
+	@Query(value="SELECT * FROM categoria WHERE id_categoria != :categoria_id ORDER BY RAND() LIMIT 4", nativeQuery = true)
+	List  <Categoria> otrasCategorias(int categoria_id);
+	
+	
 }

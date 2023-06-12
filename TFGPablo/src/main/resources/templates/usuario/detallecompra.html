@@ -42,8 +42,8 @@
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-        <li class="breadcrumb-item"><a th:href="@{/usuario/compras}">Compras</a></li>
-        <li class="breadcrumb-item active">Detalle de Compra</li>
+        <li class="breadcrumb-item"><a th:href="@{/usuario/compras}">Reservas</a></li>
+        <li class="breadcrumb-item active">Detalle de Reserva</li>
       </ol>
 
       <!-- Blog Post -->
@@ -52,23 +52,28 @@
           <div class="row">
            <div class="col-lg-12">
             <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Clase</th>
-                  <th scope="col">HoraInicio</th>
-					<th scope="col">HoraFin</th>
-                  <th scope="col">Total</th>                  
-                </tr>
-              </thead>
-              <tbody>
-                <tr th:each="detalle:${detalles}">
-                  <td  th:text="${detalle.nombre}"></td>
-                  <td th:text="${detalle.clases.horaInicio}"></td>
-                  <td th:text="${detalle.clases.horaFin}"></td>
-                  <td th:text="${detalle.total}"></td>
-                </tr>
-              </tbody>
-            </table>
+  <thead>
+    <tr>
+      <th scope="col">Clase</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">HoraInicio</th>
+      <th scope="col">HoraFin</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="detalle:${detalles}">
+      <td th:text="${detalle.nombre}"></td>
+      <td>
+        <span th:text="${#dates.format(detalle.clases.modalidad.date, 'dd-MM-yyyy')}"></span>
+      </td>
+      <td th:text="${detalle.clases.horaInicio}"></td>
+      <td th:text="${detalle.clases.horaFin}"></td>
+      
+    </tr>
+  </tbody>
+</table>
+
           </div>
         </div>
       </div>

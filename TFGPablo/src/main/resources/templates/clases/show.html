@@ -49,19 +49,17 @@
         <th>Nombre</th>
         <th>Hora de inicio</th>
         <th>Hora de fin</th>
-        <th>Precio</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr th:each="clase:${clasesporconfirmar}">
-        <td th:text="${clase.modalidad.date}"></td>
+        <td th:text="${#dates.format(clase.modalidad.date, 'dd/MM/yyyy')}"></td>
         <td th:text="${clase.nombre}"></td>
         <td th:text="${clase.horaInicio}"></td>
         <td th:text="${clase.horaFin}"></td>
-        <td th:text="${clase.precio}"></td>
         <td>
-          <a th:href="@{clases/confirmar/{id} (id=${clase.id}) }" class="btn btn-primary">Confirmar</a>
+          <a th:href="@{clases/confirmar/{id} (id=${clase.id}) }" class="btn btn-success">Confirmar</a>
         </td>
       </tr>       
     </tbody>

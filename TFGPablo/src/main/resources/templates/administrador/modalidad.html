@@ -35,24 +35,90 @@
     <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
     <li class="breadcrumb-item active">Entrenamientos</li>
   </ol>
-   <a class="btn btn-primary" th:href="@{/administrador/formularioDisponibilidad}" > Dar Disponibilidad</a>
-    <h2 class="mt-2 mb-3">Vista Previa</h2>
-  <div class="row">
   
-    <div class="col-md-4 mb-3" th:each="modalidad: ${modalidades}">
-     
-      <div class="card">
-        <img class="card-img-top" th:src="@{/images/{img} (img=${modalidad.imagen})} " alt="Foto de Deporte">
-        <div class="card-body">
-          <h5 class="card-title" th:text="${modalidad.nombre}"></h5>
-          <p class="card-text" th:text="${modalidad.ubicacion}">Ubicación: Madrid</p>
-          <p class="card-text" th:text="${modalidad.modalidad}"></p>
-          
-          <a href="#" class="btn btn-primary">Reservar cita</a>
-        </div>
-      </div>
+  <div class="row">
+    
+    
+    
+    <div class="col-md-8">
+      <div class="shadow p-3 mb-5 bg-white rounded">
+        <h1>Formulario de Modalidad</h1>
+<form th:action="@{/administrador/guardarDisponibilidad}" method="POST" enctype="multipart/form-data">
+    <select class="form-control" id="intCategoria" name="intCategoria" required>
+        <option th:each="categoria : ${categorias}" th:value="${categoria.id_categoria}" th:text="${categoria.nombre}"></option>
+    </select>
+    <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
     </div>
-</div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="horaInicio">Hora de inicio:</label>
+            <input type="time" class="form-control" id="horaInicio" name="horaInicio" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="horaFin">Hora de fin:</label>
+            <input type="time" class="form-control" id="horaFin" name="horaFin" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="imagen">Imagen:</label>
+        <input type="file" class="form-control-file" id="img" name="img" required>
+    </div>
+    <div class="form-group">
+        <label for="date">Fecha:</label>
+        <input type="date" class="form-control" id="date" name="date"required>
+    </div>
+   
+    <div class="form-group">
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" class="form-control" id="ubicacion" name="ubicacion"required>
+    </div>
+    <div class="form-group">
+        <label for="modalidad">Modalidad:</label>
+        <select class="form-control" id="modalidad" name="intModalidad" required>
+            <option value="0">Presencial</option>
+            <option value="1">Online</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="duracion">Duración (minutos):</label>
+        <input type="number" class="form-control" id="duracion" name="duracion"required>
+    </div>
+    <div class="form-group">
+        <label for="intervaloEntreClases">Intervalo entre clases (minutos):</label>
+        <input type="number" class="form-control" id="intervaloentreclases" name="intervaloentreclases" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+    <form class="form-horizontal" th:action="@{/administrador/añadirDeporte}" method="post" enctype="multipart/form-data">
+      <div class="card-body">
+        <h5 class="card-title">¿No encuentras el Deporte?</h5>
+        <p class="card-text">Añade el deporte</p>
+        
+         <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen:</label>
+                <input type="file" class="form-control-file" id="img" name="img" required >
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            
+        
+      </div>
+      </form>
+    </div>
+  </div>
+  
 </div>
 <!-- /.container
 

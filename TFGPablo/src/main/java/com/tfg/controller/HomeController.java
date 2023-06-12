@@ -85,11 +85,14 @@ public class HomeController {
 	}
 
 	
+	
+	
 	@GetMapping("/activiad/{id}")
 	public String detallesModalidad(@PathVariable("id") int id,Model model, HttpServletRequest request, Authentication authentication, HttpSession session) {
 		model.addAttribute("actividad", categoriaService.findbyIdCategoria(id));
 		model.addAttribute("entrenadores", entrenadorService.buscarEntreDeUnaCategor(id));
 		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		model.addAttribute("otrasActividades", categoriaService.otrasCategorias(id));
 		
 		return "usuario/actividades";
 
@@ -102,6 +105,7 @@ public class HomeController {
 		model.addAttribute("modalidades", modalidadService.mostrarModalidadesCategoriadeunEntrenador(idCategoria,idEntrenador));
 		System.out.println(modalidadService.mostrarModalidadesCategoriadeunEntrenador(idCategoria,idEntrenador));
 		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		model.addAttribute("otrasActividades", categoriaService.otrasCategorias(idCategoria));
 		
 		return "usuario/entrenadorDisponibilidad1";
 
@@ -112,6 +116,7 @@ public class HomeController {
 	    model.addAttribute("entrenador", entrenadorService.buscarporID(idEntrenador));
 	    model.addAttribute("actividad", categoriaService.findbyIdCategoria(idCategoria));
 	    model.addAttribute("modalidades", modalidadService.mostrarModalidadesCategoriadeunEntrenador(idCategoria, idEntrenador));
+	    model.addAttribute("otrasActividades", categoriaService.otrasCategorias(idCategoria));
 
 	    java.sql.Date fechaSql = null;
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -181,6 +186,14 @@ public class HomeController {
 		for (DetalleOrden detalleOrden : detalles) {
 			if (detalleOrden.getClases().getId() != id) {
 				ordenesNueva.add(detalleOrden);
+			}else {
+				Clases clase = new Clases();
+				Optional<Clases> optionalClase = clasesService.get(id);
+				clase = optionalClase.get();
+				
+				clase.setDisponible(false);
+				clase.setReservado(false);
+				clasesService.save(clase);
 			}
 		}
 
